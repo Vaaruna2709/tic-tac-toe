@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #000;
+    justify-content: space-evenly;
+}
+.boardElements{
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 1rem;
+}
+.playerDisplay{
+    color: white;
+    margin-bottom: 2rem;
+}
+
+#board{
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0;
+    width: 30vw; 
+    height: 30vw; 
+    max-width: 600px; 
+    max-height: 600px;
+    border: 2px solid #d6cfd5;
+    justify-self: center;
+}
+.grid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+.red{
+    background-color: #FC2E20;
+}
+.orange{
+  background-color:#FDB750;
+}
