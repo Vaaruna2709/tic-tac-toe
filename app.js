@@ -8,25 +8,26 @@ document.addEventListener('DOMContentLoaded',()=>{
     let sameCol = false;
     let diagonal = false;
    
+   
    function findWinner(grid){
    
     let row = grid.dataset.row;
     let col = grid.dataset.col;
     for(let i=0;i<3;i++){
         let rowCell = document.getElementById(`cell-${row}-${i}`);
-        console.log( rowCell);
+        // console.log( rowCell);
          if(rowCell.innerHTML == grid.innerHTML){
           sameRow = true;
-          console.log(grid.innerHTML,rowCell.innerHTML);
+        //   console.log(grid.innerHTML,rowCell.innerHTML);
         
          }else{
          sameRow =false;
          break;
         }
-        console.log(sameRow);
+        // console.log(sameRow);
 
     }
-    console.log(sameRow);
+    // console.log(sameRow);
     for(let i=0;i<3;i++){
         let colCell = document.getElementById(`cell-${i}-${col}`);
         console.log( colCell.innerHTML);
@@ -36,26 +37,46 @@ document.addEventListener('DOMContentLoaded',()=>{
             
          }else{
             sameCol =false;
+            break;
          }
     }
     for(let i=0;i<3;i++){
         let diagonalCell = document.getElementById(`cell-${i}-${i}`);
-        console.log( diagonalCell.innerHTML);
+        // console.log( diagonalCell.innerHTML);
         if(diagonalCell.innerHTML == grid.innerHTML){
             diagonal = true;
-            console.log(grid.innerHTML,diagonalCell.innerHTML);
+            // console.log(grid.innerHTML,diagonalCell.innerHTML);
             
          }else{
            diagonal =false;
+           break;
          }
     }
 //    console.log(diagonal,sameCol,sameRow)
     if(sameCol || sameRow || diagonal){
       let winner = grid.innerHTML;
+      console.log(sameCol,sameRow,diagonal)
       playerDisplay.innerHTML = `${winner} is declared as the winner`;
       removeAllEventListeners()
 
     }
+    gameOver();
+   
+    
+   }
+
+   function gameOver(){
+    let over =true;
+    const grids = document.querySelectorAll(".grid");
+   for(let grid of grids){
+    if(grid.innerHTML == ""){
+        over = false;
+        break;
+    }
+   }
+   if(over){
+    playerDisplay.innerHTML= "Tie";
+   }
    }
     
    function removeAllEventListeners() {
@@ -72,6 +93,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             grid.id = `cell-${i}-${j}`;
             grid.dataset.row = i;
             grid.dataset.col = j;
+            grid.innerHTML = "";
             grid.classList.add("grid");
             if((i+j)%2 ==0){
                 grid.classList.add("red");
